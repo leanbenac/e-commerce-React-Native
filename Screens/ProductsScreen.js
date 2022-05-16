@@ -1,0 +1,111 @@
+import React, { useEffect, useState } from 'react'
+import {  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import Header from '../Components/Header'
+import Searcher from '../Components/Searcher';
+import { colors } from '../styles/colors'
+import { Feather } from '@expo/vector-icons';   
+import List from '../Components/List';
+import {PRODUCTS} from '../Data/products';
+
+const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleCategory}) => {
+
+    const [input, setInput] = useState("");
+    const [initialProducts, setInitialProducts] = useState([])
+    const [productsFiltered, setProductsFiltered] = useState([])
+
+    const handleErase = () => {
+        setInput("")
+    }
+
+    //Buscar productos según el input.(2)
+    useEffect(()=> {
+        if(initialProducts.length !== 0){
+            if (input === "") setProductsFiltered(initialProducts)
+            else {
+                const productosFiltrados = initialProducts.filter(product => product.description.toLowerCase().includes(input.toLowerCase()))
+                setProductsFiltered(productosFiltrados)
+            }
+        }
+    }, [input, initialProducts])
+
+    //Realiza el filtro inicial de productos por categoría(1)
+    useEffect(()=>{
+        const productosIniciales = PRODUCTS.filter(product => product.category === category.id)
+        setInitialProducts(productosIniciales);
+    }, [])
+
+    console.log(initialProducts);
+    console.log(productsFiltered);
+    return (
+
+        <>
+            <Header title={category.category}/>
+            <View style = {styles.container}>
+                <Searcher additionalStyles={{
+                    backgroundColor: colors.lightGreen,
+                }}>
+                    <TextInput
+                    value={input}
+                    onChangeText={setInput}
+                    keyboardType="default"
+                    style={styles.input}
+                    placeholder ="ingrese producto a buscar "
+                    />
+                <TouchableOpacity  onPress={handleErase} style={styles.button}>
+                    <Feather style={styles.textButton} name="delete" size={25} color="black" />
+                </TouchableOpacity>
+                </Searcher>
+
+                    <View>
+                        <List data={productsFiltered} itemType ={"Producto"} onPress={()=> {}}/>
+                        <TouchableOpacity style={styles.buttonBack} onPress={()=>handleCategory(null)} >
+                            <Text>
+                                Go back
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+            </View>
+        </>
+    )
+}
+
+export default ProductsScreen
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+    input: {
+        width:'77%',
+        padding: 10,
+        margin: 10,
+        backgroundColor: colors.lightWhite,
+        borderRadius: 5,
+        height: 50,
+    },
+    button:{
+        marginTop:10,
+        width:50,
+        height: 50,
+        backgroundColor: colors.lightOrange,
+        borderRadius:5,
+    },
+    textButton:{
+        textAlign:'center',
+        alignItems:'center',
+        padding:12,
+    },
+    buttonBack: {
+        marginTop:40,
+        width:100,
+        height: 50,
+        backgroundColor: colors.lightOrange,
+        borderRadius:5,
+    },
+    listContainer: {
+        flex:1,
+    }
+})
