@@ -55,15 +55,14 @@ const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleCatego
                     <Feather style={styles.textButton} name="delete" size={25} color="black" />
                 </TouchableOpacity>
                 </Searcher>
-
-                    <View>
+                    <>
                         <List data={productsFiltered} itemType ={"Producto"} onPress={()=> {}}/>
                         <TouchableOpacity style={styles.buttonBack} onPress={()=>handleCategory(null)} >
                             <Text>
                                 Go back
                             </Text>
                         </TouchableOpacity>
-                    </View>
+                    </>
             </View>
         </>
     )
@@ -99,13 +98,13 @@ const styles = StyleSheet.create({
         padding:12,
     },
     buttonBack: {
-        marginTop:40,
+        marginTop:10,
         width:100,
         height: 50,
         backgroundColor: colors.lightOrange,
         borderRadius:5,
     },
-    listContainer: {
-        flex:1,
-    }
+    // listContainer: {
+    // //     flex:1,
+    // // }
 })
