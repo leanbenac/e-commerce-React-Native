@@ -3,17 +3,23 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import CategoriesScreen from './Screens/CategoriesScreen';
 import ProductsScreen from './Screens/ProductsScreen';
 import { useFonts } from 'expo-font';
+import DetailScreen from './Screens/DetailScreen';
 
 
 export default function App() {
 
-    const [categorySelected, setCategorySelected]  = useState(null)
+    const [categorySelected, setCategorySelected]  = useState(null);
+    const [productSelected, setProductSelected] = useState(null);
 
     const handleCategory = (category) =>{
       setCategorySelected(category)
     }
 
-    console.log(categorySelected);
+    const handleProduct = (product) =>{
+      setProductSelected(product)
+    }
+    // console.log(categorySelected);
+    console.log(productSelected);
 
     const [loaded] = useFonts({
       LatoRegular: require('./assets/fonts/Lato-Regular.ttf'),
@@ -22,14 +28,17 @@ export default function App() {
     if (!loaded) {
       return <ActivityIndicator/>;
     }
-
+    
   return (
 
     <View style={style.container}>
-      { categorySelected ?
-        <ProductsScreen category={categorySelected} handleCategory={handleCategory}/>
-        :
+      { !categorySelected ?
         <CategoriesScreen handleCategory = {handleCategory}/>
+        :
+        !productSelected ?
+        <ProductsScreen category={categorySelected} handleProduct={handleProduct} handleCategory={handleCategory}/>
+        :
+        <DetailScreen product={productSelected} handleProduct={handleProduct}/>
       }
     </View>
   );

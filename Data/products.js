@@ -8,14 +8,14 @@ export const PRODUCTS = [
     },
     {
         id: 2,
-        category: 2,
+        category: 1,
         description: "Product 2",
         price: 19.99,
         image: "https://picsum.photos/200/300"
     },
     {
         id: 3,
-        category: 3,
+        category: 1,
         description: "Product 3",
         price: 49.08,
         image: "https://picsum.photos/200/300"
