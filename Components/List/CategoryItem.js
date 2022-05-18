@@ -1,18 +1,19 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { colors } from '../../styles/colors'
-import { Dimensions, useWindowDimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 
 //responsividdad 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
 const CategoryItem = ({category}) => {
 
     // console.log(windowWidth, windowHeight);
-
-    const {width, height } = useWindowDimensions();
-    // console.log (width,height);
+    
+    //hook dimensiones
+    const { width, height } = useWindowDimensions();
+    console.log (width,height);
 
     return (
         <View style ={{...style.container,

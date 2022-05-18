@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import Header from '../Components/Header'
 import Searcher from '../Components/Searcher';
 import { colors } from '../styles/colors'
@@ -40,39 +40,50 @@ const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleProduc
 
     return (
 
+        // <KeyboardAvoidingView
+        //     behavior={Platform.OS === "ios" ? "padding" : "height"}
+        //     style={styles.keyboardAvoid}
+        // >
         <>
             <Header title={category.category}/>
-            <View style = {styles.container}>
-                <Searcher additionalStyles={{
-                    backgroundColor: colors.lightGreen,
-                }}>
-                    <TextInput
-                    value={input}
-                    onChangeText={setInput}
-                    keyboardType="default"
-                    style={styles.input}
-                    placeholder ="ingrese producto a buscar "
-                    />
-                <TouchableOpacity  onPress={handleErase} style={styles.button}>
-                    <Feather style={styles.textButton} name="delete" size={25} color="black" />
-                </TouchableOpacity>
-                </Searcher>
-                    <>
-                        <List data={productsFiltered} itemType ={"Producto"} onPress={handleProduct}/>
-                        <TouchableOpacity style={styles.buttonBack} onPress={() => handleCategory(null)} >
-                            <Text>
-                                Go back
-                            </Text>
-                        </TouchableOpacity>
-                    </>
-            </View>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style = {styles.container}>
+                    <Searcher additionalStyles={{
+                        backgroundColor: colors.lightGreen,
+                    }}>
+                        <TextInput
+                        value={input}
+                        onChangeText={setInput}
+                        keyboardType="default"
+                        style={styles.input}
+                        placeholder ="ingrese producto a buscar "
+                        />
+                    <TouchableOpacity  onPress={handleErase} style={styles.button}>
+                        <Feather style={styles.textButton} name="delete" size={25} color="black" />
+                    </TouchableOpacity>
+                    </Searcher>
+                        <>
+                            <List data={productsFiltered} itemType ={"Producto"} onPress={handleProduct}/>
+                            <TouchableOpacity style={styles.buttonBack} onPress={() => handleCategory(null)} >
+                                <Text>
+                                    Go back
+                                </Text>
+                            </TouchableOpacity>
+                        </>
+                </View>
+            </TouchableWithoutFeedback>
         </>
+        // </KeyboardAvoidingView>
+        
     )
 }
 
 export default ProductsScreen
 
 const styles = StyleSheet.create({
+    keyboardAvoid: {
+    flex: 1,
+    },
     container:{
         flex: 1,
         width: '100%',
