@@ -13,7 +13,7 @@ const CategoryItem = ({category}) => {
     
     //hook dimensiones
     const { width, height } = useWindowDimensions();
-    console.log (width,height);
+    // console.log (width,height);
 
     return (
         <View style ={{...style.container,

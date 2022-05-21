@@ -8,7 +8,7 @@ import List from '../Components/List'
 import { CATEGORIES } from '../Data/categories'
 
 
-const CategoriesScreen = ({handleCategory}) => {
+const CategoriesScreen = () => {
     
     const [input, setInput] = useState("")
     const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES)
@@ -26,7 +26,7 @@ const CategoriesScreen = ({handleCategory}) => {
     
     const handleSelectedCategory = (category) =>{
         console.log(category);
-        handleCategory(category)
+        // handleCategory(category)
     }
 
 
