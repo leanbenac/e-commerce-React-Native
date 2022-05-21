@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import List from '../Components/List';
 import {PRODUCTS} from '../Data/products';
 
-const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleProduct, handleCategory}) => {
+const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation}) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
@@ -37,14 +37,21 @@ const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleProduc
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
-
+    const handleDetailProduct = () => {
+        console.log("se navega hacia detail");
+        navigation.navigate("Detail");
+    }
+    const handleBack = () =>{
+        navigation.goBack();
+    } 
+    
     return (
 
-        // <KeyboardAvoidingView
-        //     behavior={Platform.OS === "ios" ? "padding" : "height"}
-        //     style={styles.keyboardAvoid}
-        // >
-        <>
+         <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.keyboardAvoid}
+        >
+        
             <Header title={category.category}/>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style = {styles.container}>
@@ -63,8 +70,8 @@ const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleProduc
                     </TouchableOpacity>
                     </Searcher>
                         <>
-                            <List data={productsFiltered} itemType ={"Producto"} onPress={handleProduct}/>
-                            <TouchableOpacity style={styles.buttonBack} onPress={() => handleCategory(null)} >
+                            <List data={productsFiltered} itemType ={"Producto"} onPress={handleDetailProduct}/>
+                            <TouchableOpacity style={styles.buttonBack} onPress={ handleBack } >
                                 <Text>
                                     Go back
                                 </Text>
@@ -72,8 +79,8 @@ const ProductsScreen = ({category = {id:1, category: "Electronic"}, handleProduc
                         </>
                 </View>
             </TouchableWithoutFeedback>
-        </>
-        // </KeyboardAvoidingView>
+        
+        </KeyboardAvoidingView>
         
     )
 }

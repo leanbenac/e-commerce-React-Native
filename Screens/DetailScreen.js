@@ -3,7 +3,21 @@ import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'rea
 import Header from '../Components/Header'
 import { colors } from '../styles/colors'
 
-const DetailScreen = ({product, handleProduct}) => {
+const DetailScreen = ({ product = 
+    {
+    id: 8,
+    category: 4,
+    description: "Product 8",
+    price: 80.63,
+    image: "https://picsum.photos/200/300"
+    }, navigation
+}) => {
+
+    const handleBack = () =>{
+        navigation.goBack();
+    } 
+
+
     return (
 
         <> 
@@ -19,7 +33,7 @@ const DetailScreen = ({product, handleProduct}) => {
 
             <Text>{product.description}</Text>
             <Text>$ {product.price}</Text>
-            <TouchableOpacity style={styles.buttonBack} onPress={() => handleProduct(null)} >
+            <TouchableOpacity style={styles.buttonBack} onPress={handleBack} >
                 <Text>
                        Go back
                  </Text>
