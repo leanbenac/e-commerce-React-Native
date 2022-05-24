@@ -27,7 +27,11 @@ const CategoriesScreen = ({navigation}) => {
     const handleSelectedCategory = (category) =>{
         // console.log(category);
         // handleCategory(category);
-        navigation.navigate("Products")
+        // console.log(category);
+        navigation.push("Products",{
+            categoryID: category.id,
+            categoryTitle: category.category,
+        })
     }
 
     const handleErase = () =>{
@@ -37,7 +41,6 @@ const CategoriesScreen = ({navigation}) => {
     return (
 
         <>
-        <Header/>
         <View style = {styles.container}>
             <Searcher additionalStyles={{
                 backgroundColor: colors.lightGreen,

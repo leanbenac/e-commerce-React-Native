@@ -1,9 +1,9 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
-import CategoriesScreen from './Screens/CategoriesScreen';
-import ProductsScreen from './Screens/ProductsScreen';
+// import CategoriesScreen from './Screens/CategoriesScreen';
+// import ProductsScreen from './Screens/ProductsScreen';
 import { useFonts } from 'expo-font';
-import DetailScreen from './Screens/DetailScreen';
+// import DetailScreen from './Screens/DetailScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MainNavigator from './Navigation/Shop';
 
@@ -25,6 +25,7 @@ export default function App() {
 
     const [loaded] = useFonts({
       LatoRegular: require('./assets/fonts/Lato-Regular.ttf'),
+      Koulen: require('./assets/fonts/Koulen-Regular.ttf'),
     });
     
     if (!loaded) {

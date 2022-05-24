@@ -1,28 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
 import Header from '../Components/Header'
+import { PRODUCTS } from '../Data/products'
 import { colors } from '../styles/colors'
 
-const DetailScreen = ({ product = 
-    {
-    id: 8,
-    category: 4,
-    description: "Product 8",
-    price: 80.63,
-    image: "https://picsum.photos/200/300"
-    }, navigation
+const DetailScreen = ({ 
+    route,
+     navigation
 }) => {
+
+    const[product, setProduct] = useState(null)
+    const {productID} = route.params
+
+    console.log(productID);
 
     const handleBack = () =>{
         navigation.goBack();
     } 
 
+        useEffect(()=> {
+            const productSelected = PRODUCTS.find (product => product.id === productID);
+            setProduct(productSelected)
+        },[productID])
+
+
 
     return (
 
-        <> 
-        <Header title={product.description}/>
-
+        product && (
+            
         <View style={styles.container}>
             <Image
             source={{uri: product.image}}
@@ -39,7 +45,9 @@ const DetailScreen = ({ product =
                  </Text>
             </TouchableOpacity>
         </View>
-        </>
+        )
+
+        
     )
 }
 

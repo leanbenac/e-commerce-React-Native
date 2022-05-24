@@ -5,27 +5,60 @@ import { NavigationContainer } from '@react-navigation/native';
 import CategoriesScreen from '../../Screens/CategoriesScreen';
 import ProductsScreen from '../../Screens/ProductsScreen';
 import DetailScreen from '../../Screens/DetailScreen';
-
+import { colors } from '../../styles/colors';
 
 
 const Stack = createNativeStackNavigator ();
 
-function MainNavigator () {
+function ShopNavigator () {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Categories"
             screenOptions={{
-                headerShown:false,
+              headerStyle:{
+                backgroundColor: colors.darkBlue
+              },
+              headerTintColor: "white",
+              headerTitleStyle:{
+                fontFamily: "Koulen",
+                fontSize: 26,
+              },
+              headerTitleAlign: "center",
+
             }}
         >
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
-          <Stack.Screen name="Products" component={ProductsScreen} />
-          <Stack.Screen name="Detail" component={DetailScreen} />
+          <Stack.Screen 
+          name="Categories" 
+          component={CategoriesScreen} 
+          options ={{
+            title: "CATEGORIES"
+          }} 
+          />
+          <Stack.Screen 
+          name="Products" 
+          component={ProductsScreen}
+          options={({route}) => ({
+            title: route.params.categoryTitle,
+            headerStyle: {
+              backgroundColor: route.params.categoryTitle === "electronic" ? colors.darkGreen :
+              route.params.categoryTitle === "techno" ? "black" : colors.darkBlue,
+            }
+          })
+          } 
+          />
+          <Stack.Screen 
+          name="Detail" 
+          component={DetailScreen}
+          options={ ({route}) => ({
+            title: route.params.productTitle
+          })
+          } 
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export default MainNavigator;
+export default ShopNavigator;
 
 const styles = StyleSheet.create({})

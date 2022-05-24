@@ -7,11 +7,14 @@ import { Feather } from '@expo/vector-icons';
 import List from '../Components/List';
 import {PRODUCTS} from '../Data/products';
 
-const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation}) => {
+const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation, route}) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([])
+
+    const{categoryID} = route.params
+    route.params
 
     const handleErase = () => {
         setInput("")
@@ -30,16 +33,19 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation}
 
     //Realiza el filtro inicial de productos por categoría(1)
     useEffect(()=>{
-        const productosIniciales = PRODUCTS.filter(product => product.category === category.id)
+        const productosIniciales = PRODUCTS.filter(product => product.category === categoryID)
         setInitialProducts(productosIniciales);
-    }, [])
+    }, [categoryID])
 
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
-    const handleDetailProduct = () => {
+    const handleDetailProduct = (product) => {
         console.log("se navega hacia detail");
-        navigation.navigate("Detail");
+        navigation.navigate("Detail",{
+            productID: product.id,
+            productTitle: product.description
+        });
     }
     const handleBack = () =>{
         navigation.goBack();
@@ -52,7 +58,6 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation}
             style={styles.keyboardAvoid}
         >
         
-            <Header title={category.category}/>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style = {styles.container}>
                     <Searcher additionalStyles={{
