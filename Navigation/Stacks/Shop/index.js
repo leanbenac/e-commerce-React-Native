@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
-import CategoriesScreen from '../../Screens/CategoriesScreen';
-import ProductsScreen from '../../Screens/ProductsScreen';
-import DetailScreen from '../../Screens/DetailScreen';
-import { colors } from '../../styles/colors';
+import CategoriesScreen from '../../../Screens/CategoriesScreen';
+import ProductsScreen from '../../../Screens/ProductsScreen';
+import DetailScreen from '../../../Screens/DetailScreen';
+import { colors } from '../../../styles/colors';
 
 
 const Stack = createNativeStackNavigator ();
@@ -31,7 +31,7 @@ function ShopNavigator () {
           name="Categories" 
           component={CategoriesScreen} 
           options ={{
-            title: "CATEGORIES"
+            title: "Categorias"
           }} 
           />
           <Stack.Screen 
@@ -50,7 +50,9 @@ function ShopNavigator () {
           name="Detail" 
           component={DetailScreen}
           options={ ({route}) => ({
-            title: route.params.productTitle
+            title: route.params.productTitle,
+            headerTintColor: 'red',
+
           })
           } 
           />

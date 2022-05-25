@@ -5,7 +5,7 @@ import { ActivityIndicator, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 // import DetailScreen from './Screens/DetailScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MainNavigator from './Navigation/Shop';
+import MainNavigator from './Navigation/Stacks/Shop';
 
 
 export default function App() {
