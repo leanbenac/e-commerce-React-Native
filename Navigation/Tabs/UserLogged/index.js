@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ShopNavigator from '../../Stacks/Shop'
 import CartStack from '../../Stacks/Cart';
 import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+
 
 const BottomTabs = createBottomTabNavigator()
 
@@ -34,6 +36,16 @@ const TabNavigatorLogged = () => {
       <BottomTabs.Screen
         name="CartTab"
         component={CartStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View style={styles.item}>
+                <Feather name="shopping-cart" size={24} color="black" />
+                <Text>Cart</Text>
+              </View>
+            )
+          }
+        }}
       />
     </BottomTabs.Navigator>
   )

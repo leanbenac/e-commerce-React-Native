@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator ();
 
 function ShopNavigator () {
     return (
-      <NavigationContainer>
+
         <Stack.Navigator initialRouteName="Categories"
             screenOptions={{
               headerStyle:{
@@ -57,7 +57,7 @@ function ShopNavigator () {
           } 
           />
         </Stack.Navigator>
-      </NavigationContainer>
+
     );
   }
 
