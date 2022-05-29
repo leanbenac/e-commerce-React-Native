@@ -6,6 +6,7 @@ import ShopNavigator from '../../Stacks/Shop'
 import CartStack from '../../Stacks/Cart';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import OrdersStack from '../../Stacks/Orders'
 
 
 const BottomTabs = createBottomTabNavigator()
@@ -42,6 +43,20 @@ const TabNavigatorLogged = () => {
               <View style={styles.item}>
                 <Feather name="shopping-cart" size={24} color="black" />
                 <Text>Cart</Text>
+              </View>
+            )
+          }
+        }}
+      />
+            <BottomTabs.Screen
+        name="OrdersTab"
+        component={OrdersStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View style={styles.item}>
+                <Feather name="list" size={24} color="black" />
+                <Text>Ordenes</Text>
               </View>
             )
           }
