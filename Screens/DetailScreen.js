@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
+import { useSelector } from 'react-redux'
 import Header from '../Components/Header'
 import { PRODUCTS } from '../Data/products'
+import products from '../features/products'
 import { colors } from '../styles/colors'
 
 const DetailScreen = ({ 
@@ -9,36 +11,36 @@ const DetailScreen = ({
      navigation
 }) => {
 
-    const[product, setProduct] = useState(null)
-    const {productID} = route.params
-
-    console.log(productID);
+    // const[product, setProduct] = useState(null)
+    // const {productID} = route.params
+    const {productSelected} = useSelector(state => state.products.value)
+    // console.log(productID);
 
     const handleBack = () =>{
         navigation.goBack();
     } 
 
-        useEffect(()=> {
-            const productSelected = PRODUCTS.find (product => product.id === productID);
-            setProduct(productSelected)
-        },[productID])
+        // useEffect(()=> {
+        //     const productSelected = PRODUCTS.find (product => product.id === productID);
+        //     setProduct(productSelected)
+        // },[productID])
 
 
 
     return (
 
-        product && (
+        productSelected && (
             
         <View style={styles.container}>
             <Image
-            source={{uri: product.image}}
+            source={{uri: productSelected.image}}
             style ={styles.image}
             resizeMode="cover"
             
             />
 
-            <Text>{product.description}</Text>
-            <Text>$ {product.price}</Text>
+            <Text>{productSelected.description}</Text>
+            <Text>$ {productSelected.price}</Text>
             <TouchableOpacity style={styles.buttonBack} onPress={handleBack} >
                 <Text>
                        Go back

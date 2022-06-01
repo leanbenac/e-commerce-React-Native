@@ -6,6 +6,8 @@ import { useFonts } from 'expo-font';
 // import DetailScreen from './Screens/DetailScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MainNavigator from './Navigation';
+import { Provider } from 'react-redux'
+import store from './Store';
 
 
 export default function App() {
@@ -35,9 +37,15 @@ export default function App() {
     
   return (
 
-    <SafeAreaView style={ {flex: 1}}>
+    // <SafeAreaView style={ {flex: 1}}>
+
+    <Provider store={store}>
+
       <MainNavigator/>
-    </SafeAreaView>
+
+    </Provider>
+    
+    // </SafeAreaView>
 
 
   );

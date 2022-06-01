@@ -6,36 +6,49 @@ import { colors } from '../styles/colors'
 import { Feather } from '@expo/vector-icons'; 
 import List from '../Components/List'
 import { CATEGORIES } from '../Data/categories'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCategory } from '../features/categories'
+import { setProductsByCategory } from '../features/products'
 
 
 const CategoriesScreen = ({navigation}) => {
     
     const [input, setInput] = useState("")
-    const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES)
+    const [categoriesFilter, setCategoriesFilter] = useState()
     
+    //hook de redux + consumiendo un estado
+    const {categories} = useSelector(state => state.categories.value)
+    const dispatch = useDispatch();
+
+    console.log(categories);
     useEffect(()=> {
-        if (input === "") setCategoriesFilter(CATEGORIES)
+        if (input === "") setCategoriesFilter(categories)
         else {
             console.log("Se ejecuta el efecto");
-            const categoriasFiltradas = CATEGORIES.filter(category => 
+            const categoriasFiltradas = categories.filter(category => 
             category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
+
+
+    const handleErase = () =>{
+        setInput("");
+    }
 
     
     const handleSelectedCategory = (category) =>{
         // console.log(category);
         // handleCategory(category);
         // console.log(category);
+
+        dispatch(setProductsByCategory(category.id))
+        dispatch(selectCategory(category.id));
+
         navigation.push("Products",{
             categoryID: category.id,
             categoryTitle: category.category,
         })
-    }
-
-    const handleErase = () =>{
-        setInput("");
     }
 
     return (

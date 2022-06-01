@@ -1,53 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import Header from '../Components/Header'
 import Searcher from '../Components/Searcher';
 import { colors } from '../styles/colors'
 import { Feather } from '@expo/vector-icons';   
 import List from '../Components/List';
-import {PRODUCTS} from '../Data/products';
+import { PRODUCTS } from '../Data/products';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductSelected } from '../features/products';
 
 const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation, route}) => {
 
     const [input, setInput] = useState("");
-    const [initialProducts, setInitialProducts] = useState([])
+    // const [initialProducts, setInitialProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([])
+    const {products} = useSelector(state => state.products.value)
+    const {productsByCategory} = useSelector(state => state.products.value)
+    const dispatch = useDispatch();
+
+    console.log(products);
 
     const{categoryID} = route.params
-    route.params
+
 
     const handleErase = () => {
         setInput("")
     }
 
-    //Buscar productos según el input.(2)
-    useEffect(()=> {
-        if(initialProducts.length !== 0){
-            if (input === "") setProductsFiltered(initialProducts)
+    //Buscar productos según el input.
+    useEffect(() => {
+        if (productsByCategory.length !== 0) {
+            if (input === "") setProductsFiltered(productsByCategory)
             else {
-                const productosFiltrados = initialProducts.filter(product => product.description.toLowerCase().includes(input.toLowerCase()))
+                const productosFiltrados = productsByCategory.filter(product => product.description.toLowerCase().includes(input.toLowerCase()))
                 setProductsFiltered(productosFiltrados)
             }
         }
-    }, [input, initialProducts])
+    }, [input, productsByCategory])
 
     //Realiza el filtro inicial de productos por categoría(1)
-    useEffect(()=>{
-        const productosIniciales = PRODUCTS.filter(product => product.category === categoryID)
-        setInitialProducts(productosIniciales);
-    }, [categoryID])
+    // useEffect(()=> {
+    //     const productosIniciales = products.filter(product => product.category === categoryID)
+    //     setInitialProducts(productosIniciales);
+    // }, [categoryID])
 
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
     const handleDetailProduct = (product) => {
-        console.log("se navega hacia detail");
+        console.log(product);
+        dispatch(setProductSelected(product.id))
+
         navigation.navigate("Detail",{
-            productID: product.id,
-            productTitle: product.description
-        });
+            categoryTitle: category.category
+        })
     }
-    const handleBack = () =>{
+    const handleBack = () => {
         navigation.goBack();
     } 
     
@@ -68,7 +76,7 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation,
                         onChangeText={setInput}
                         keyboardType="default"
                         style={styles.input}
-                        placeholder ="ingrese producto a buscar "
+                        placeholder ="busque el producto "
                         />
                     <TouchableOpacity  onPress={handleErase} style={styles.button}>
                         <Feather style={styles.textButton} name="delete" size={25} color="black" />
