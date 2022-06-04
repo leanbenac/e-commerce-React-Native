@@ -3,18 +3,25 @@ import React from 'react'
 import { colors } from '../styles/colors'
 import { PRODUCTSSELECTED } from '../Data/productsSelected';
 import CartItem from '../Components/CartItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { confirmPurchase } from '../features/cart';
 
 const handleDelete = (id) => console.log(`Se elimina del carrito el producto con id: ${id}`);
-const handleConfirm = () => console.log("Se confirma la compra");
 
 const renderItem = (data) => (
     <CartItem item={data.item} onDelete={handleDelete} />
     )
     
     const CartScreen = () => {
+
+        const dispatch = useDispatch();
+        const {cart} = useSelector (state =>state.cart.value)
+        console.log(cart);
         
-    const {cart} = useSelector (state =>state.cart.value)
+        const handleConfirm = () => {
+            dispatch(confirmPurchase(cart))
+        }
+
     const total = 12000;
 
     return (
