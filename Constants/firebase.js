@@ -1,0 +1,1 @@
+export const DB_URL= 'https://reactnative-ecommerce-d4f40-default-rtdb.asia-southeast1.firebasedatabase.app/'
