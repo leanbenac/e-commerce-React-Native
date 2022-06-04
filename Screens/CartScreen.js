@@ -3,24 +3,25 @@ import React from 'react'
 import { colors } from '../styles/colors'
 import { PRODUCTSSELECTED } from '../Data/productsSelected';
 import CartItem from '../Components/CartItem';
+import { useSelector } from 'react-redux';
 
 const handleDelete = (id) => console.log(`Se elimina del carrito el producto con id: ${id}`);
 const handleConfirm = () => console.log("Se confirma la compra");
 
-
 const renderItem = (data) => (
     <CartItem item={data.item} onDelete={handleDelete} />
-)
-
-const CartScreen = () => {
-
+    )
+    
+    const CartScreen = () => {
+        
+    const {cart} = useSelector (state =>state.cart.value)
     const total = 12000;
 
     return (
         <View style={styles.container}>
             <View style={styles.list}>
                 <FlatList
-                    data={PRODUCTSSELECTED}
+                    data={cart}
                     keyExtractor={item => item.id}
                     renderItem={renderItem}
                 />

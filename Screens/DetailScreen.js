@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux'
-import Header from '../Components/Header'
-import { PRODUCTS } from '../Data/products'
+import { useDispatch, useSelector } from 'react-redux'
+// import Header from '../Components/Header'
+// import { PRODUCTS } from '../Data/products'
+import { addItem } from '../features/cart'
 import products from '../features/products'
 import { colors } from '../styles/colors'
 
@@ -11,6 +12,7 @@ const DetailScreen = ({
      navigation
 }) => {
 
+    const dispatch = useDispatch();
     // const[product, setProduct] = useState(null)
     // const {productID} = route.params
     const {productSelected} = useSelector(state => state.products.value)
@@ -25,6 +27,9 @@ const DetailScreen = ({
         //     setProduct(productSelected)
         // },[productID])
 
+        const handleAdd = (id) =>{
+            dispatch(addItem({id: id}))
+        }
 
 
     return (
@@ -44,6 +49,11 @@ const DetailScreen = ({
             <TouchableOpacity style={styles.buttonBack} onPress={handleBack} >
                 <Text>
                        Go back
+                 </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonBack} onPress={() =>handleAdd(productSelected.id)} >
+                <Text>
+                       add to cart
                  </Text>
             </TouchableOpacity>
         </View>
