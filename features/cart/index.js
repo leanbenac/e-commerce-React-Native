@@ -18,6 +18,7 @@ export const confirmPurchase = createAsyncThunk(
     'cart/confirm',
     //llamada asincrona con metodo POST
     async (items, asyncThunk) => {
+        // try lo usamos en casa de haber un error
         try {
             const res = await fetch(
                 `${DB_URL}orders.json`,
@@ -60,6 +61,8 @@ const cartSlice = createSlice({
         },
         removeItem: () => { },
     },
+
+    //estados posibles 
     extraReducers: {
         [confirmPurchase.pending]: (state) => {
             state.value.loading = true
