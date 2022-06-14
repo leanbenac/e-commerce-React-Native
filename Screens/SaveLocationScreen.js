@@ -1,8 +1,8 @@
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { colors } from '../styles/colors';
-// import * as ImagePicker from 'expo-image-picker';
-// import renamePathAndMove from '../Utils/renamePath';
+import * as ImagePicker from 'expo-image-picker';
+import renamePathAndMove from '../Utils/renamePath';
 import { useDispatch } from 'react-redux';
 import { addLocation } from '../features/locations';
 
