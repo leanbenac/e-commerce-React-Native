@@ -15,7 +15,7 @@
 //         .empty()
 //         .min(6)
 //         .max(100)
-//         .alphanum()
+//         .alphanum
 //         .messages({
 //             "string.empty": "Campo obligatorio",
 //             "string.min": "El password debe tener 6 caracteres",

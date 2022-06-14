@@ -38,6 +38,29 @@ export const signUp = createAsyncThunk(
     }
 )
 
+export const login = createAsyncThunk(
+    'auth/login',
+    async (emailAndPassword, asyncThunk) => {
+        console.log(emailAndPassword);
+        // console.log(asyncThunk.getState());
+        try {
+           const res = await fetch (`${AUTH_LOGIN}`, {
+               method: 'POST',
+               body: JSON.stringify({
+                   email: emailAndPassword.email,
+                   password: emailAndPassword.password,
+                   returnSecureToken: true,
+               })
+           });
+           const data = await res.json()
+           console.log(data);
+           return data
+        } catch (error) {
+            return rejectWithValue('Opps there seems to be an error')
+        }
+    }
+)
+
 export const authSlice = createSlice({
     name: "auth",
     initialState,
