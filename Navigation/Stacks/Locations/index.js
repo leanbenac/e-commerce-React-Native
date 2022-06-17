@@ -6,7 +6,7 @@ import { colors } from '../../../styles/colors';
 import LocationsScreen from '../../../Screens/LocationsScreen';
 import SaveLocationScreen from '../../../Screens/SaveLocationScreen';
 import GetLocationScreen from '../../../Screens/GetLocationScreen';
-
+import SetLocationScreen from '../../../Screens/SetLocationScreen';
 import { Ionicons } from '@expo/vector-icons'; 
 
 const Stack = createNativeStackNavigator();
@@ -64,7 +64,15 @@ const LocationStack = () => {
                 }
             }
         />
-    
+    <Stack.Screen
+        name="Set-location"
+        component={SetLocationScreen}
+        options={
+          {
+            title: "Definir una ubicación"
+          }
+        }
+      />
     </Stack.Navigator>
   )
 }
