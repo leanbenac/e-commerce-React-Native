@@ -7,10 +7,15 @@ import { useDispatch } from 'react-redux';
 import { addLocation } from '../features/locations';
 
 
-const SaveLocationScreen = () => {
+const SaveLocationScreen = ({ navigation, route }) => {
   const [title, setTitle] = React.useState("")
   const [picture, setPicture] = React.useState("")
 
+
+  const params = route.params;
+
+  console.log(params?.address);
+  
   const dispatch = useDispatch();
 
   const handlePickLibrary = async () => {
@@ -63,6 +68,10 @@ const SaveLocationScreen = () => {
     setPicture("");
   }
 
+  const handleLocation = () => {
+    navigation.navigate("Get-location")
+  }
+
   return (
     <View style={styles.container}>
       <Text>Nueva dirección</Text>
@@ -80,7 +89,9 @@ const SaveLocationScreen = () => {
       }
       <Button title='Tomar una foto' onPress={handleTakePicture} />
       <Button title="Seleccionar de la galería" onPress={handlePickLibrary} />
+      <Button title="Obtener ubicación" onPress={handleLocation} />
       <Button title="Confirmar" onPress={handleConfirm}></Button>
+      
     </View>
   )
 }

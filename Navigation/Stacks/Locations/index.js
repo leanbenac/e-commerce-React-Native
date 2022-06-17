@@ -5,6 +5,8 @@ import CartScreen from '../../../Screens/CartScreen';
 import { colors } from '../../../styles/colors';
 import LocationsScreen from '../../../Screens/LocationsScreen';
 import SaveLocationScreen from '../../../Screens/SaveLocationScreen';
+import GetLocationScreen from '../../../Screens/GetLocationScreen';
+
 import { Ionicons } from '@expo/vector-icons'; 
 
 const Stack = createNativeStackNavigator();
@@ -44,6 +46,15 @@ const LocationStack = () => {
         >
         </Stack.Screen> 
 
+        <Stack.Screen
+        name="Get-location"
+        component={GetLocationScreen}
+        options={
+          {
+            title: "Obtener ubicación"
+          }
+        }
+      />
         <Stack.Screen
             name="Save-location"
             component={SaveLocationScreen}
