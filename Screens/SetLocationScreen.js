@@ -1,23 +1,41 @@
-import { Button, StyleSheet, Text } from 'react-native'
-import React, { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { API_KEY } from '../Constants/googleAPI';
 
-const SetLocationScreen = ({navigation}) => {
+const SetLocationScreen = ({ navigation }) => {
 
-    //seteo estados mensaje de error y ubicacion
+    const [initialLocation, setInitialLocation] = useState({
+        latitude: 52.52437,
+        longitude: 13.41053,
+        latitudeDelta: 0.09,
+        longitudeDelta: 0.04,
+    })
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
 
-    const initialRegion = {
-        latitude: 37,
-        longitude: -122,
-        latitudeDelta: 0.09,
-        longitudeDelta: 0.04
-    }
+    //Efecto para traer la ubicación apenas renderiza
+    useEffect(() => {
+        //IIFE
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+            let location = await Location.getCurrentPositionAsync({});
 
-    //obtengo los permisos
+            // console.log(location);
+            setInitialLocation({
+                ...initialLocation,
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+            })
+        })();
+
+    }, []);
+
     useEffect(() => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -38,14 +56,16 @@ const SetLocationScreen = ({navigation}) => {
 
     const handleConfirm = () => {
         //Reverse geocode
-        (async ()=> {
+        (async () => {
             const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${API_KEY}`)
             const reverseGeocode = await response.json()
             console.log(reverseGeocode);
             const address = reverseGeocode.results[0].formatted_address;
-            navigation.navigate('Save-location', {address})
+            navigation.navigate('Save-location', { address })
         })()
     }
+
+    console.log(initialLocation);
 
     console.log(errorMsg);
     console.log(location);
@@ -57,23 +77,25 @@ const SetLocationScreen = ({navigation}) => {
                 <Text>{errorMsg}</Text>
                 :
                 <>
-                    <MapView onPress={handleLocation} initialRegion={initialRegion} style={{flex: 1}}> 
-                        {location?.lat ?
-                        <Marker 
-                            title="Ubicación seleccionada"
-                            coordinate={{
-                                latitude: location.lat,
-                                longitude: location.lng,
-                            }}
-                        
-                        />
-                        :
-                        null
-                        
-                    
-                        }
+                    {initialLocation.latitude !== 0 && (
+                        <MapView showsScale={true} onPress={handleLocation} initialRegion={initialLocation} style={{ flex: 1 }}>
+                            {location?.lat ?
+                                <Marker
+                                    title="Ubicación seleccionada"
+                                    coordinate={{
+                                        latitude: location.lat,
+                                        longitude: location.lng,
+                                    }}
 
-                    </MapView>
+                                />
+                                :
+                                null
+
+
+                            }
+
+                        </MapView>
+                    )}
                     <Button title="Confirmar ubicación" onPress={handleConfirm}></Button>
                 </>
             }

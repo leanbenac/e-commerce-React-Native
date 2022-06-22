@@ -4,18 +4,17 @@ import { colors } from '../styles/colors';
 import * as ImagePicker from 'expo-image-picker';
 import renamePathAndMove from '../Utils/renamePath';
 import { useDispatch } from 'react-redux';
-import { addLocation } from '../features/locations';
+import { addLocation, addLocationDb } from '../features/locations';
 
 
-const SaveLocationScreen = ({ navigation, route }) => {
+const SaveLocationScreen = ({navigation, route}) => {
   const [title, setTitle] = React.useState("")
   const [picture, setPicture] = React.useState("")
-
 
   const params = route.params;
 
   console.log(params?.address);
-  
+
   const dispatch = useDispatch();
 
   const handlePickLibrary = async () => {
@@ -63,7 +62,9 @@ const SaveLocationScreen = ({ navigation, route }) => {
   const handleConfirm = async () => {
     // const path = await renamePathAndMove(picture);
     // console.log(path);
-    dispatch(addLocation({title, picture, id: Date.now(), address:params?.address}))
+    let id = Date.now()
+    dispatch(addLocation({title, picture, id, address:params?.address}))
+    dispatch(addLocationDb({title, picture, id, address:params?.address}))
     setTitle("");
     setPicture("");
   }
@@ -71,7 +72,7 @@ const SaveLocationScreen = ({ navigation, route }) => {
   const handleSetLocation = () => {
     navigation.navigate("Set-location");
   }
-
+ 
   const handleLocation = () => {
     navigation.navigate("Get-location")
   }
@@ -96,7 +97,6 @@ const SaveLocationScreen = ({ navigation, route }) => {
       <Button title="Obtener ubicación" onPress={handleLocation} />
       <Button title="Definir una ubicación" onPress={handleSetLocation} />
       <Button title="Confirmar" onPress={handleConfirm}></Button>
-      
     </View>
   )
 }
