@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
@@ -78,7 +78,7 @@ const SetLocationScreen = ({ navigation }) => {
                 :
                 <>
                     {initialLocation.latitude !== 0 && (
-                        <MapView showsScale={true} onPress={handleLocation} initialRegion={initialLocation} style={{ flex: 1 }}>
+                        <MapView showsScale={true} onPress={handleLocation} initialRegion={initialLocation} style={{ flex: 1}}>
                             {location?.lat ?
                                 <Marker
                                     title="Ubicación seleccionada"

@@ -51,7 +51,7 @@ function ShopNavigator () {
           component={DetailScreen}
           options={ ({route}) => ({
             title: route.params.productTitle,
-            headerTintColor: 'red',
+            // headerTintColor: 'red',
 
           })
           } 

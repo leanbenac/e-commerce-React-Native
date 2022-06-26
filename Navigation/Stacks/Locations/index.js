@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CartScreen from '../../../Screens/CartScreen';
@@ -24,10 +24,7 @@ const LocationStack = () => {
             fontSize: 28,
           },
           headerTitleAlign: "center",
-          // headerTransparent: true,
-          // header: () => {
-          //   return <Header/>
-          // }
+
         }}
       >
         <Stack.Screen

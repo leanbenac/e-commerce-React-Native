@@ -57,7 +57,7 @@ const TabNavigatorLogged = () => {
             return (
               <View style={styles.item}>
                 <Feather name="list" size={24} color="black" />
-                <Text>Ordenes</Text>
+                <Text>Orders</Text>
               </View>
             )
           }
@@ -71,7 +71,7 @@ const TabNavigatorLogged = () => {
             return (
               <View style={styles.item}>
                 <Entypo name="location" size={24} color="black" />
-                <Text>Direcciones</Text>
+                <Text>Addresses</Text>
               </View>
             )
           }
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     borderRadius: 15,
-    height: 90,
+    height: 80,
   },
   item: {
     flex: 1,

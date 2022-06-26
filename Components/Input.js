@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         color: colors.beige,
         backgroundColor: colors.darkBlue,
         borderBottomWidth: 2,
-        borderBottomColor: colors.beige,
+        borderBottomColor: colors.lightGreen,
         padding: 6,
         width: '100%',
         fontFamily: 'LatoRegular',
