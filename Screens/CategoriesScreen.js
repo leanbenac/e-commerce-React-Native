@@ -63,6 +63,8 @@ const CategoriesScreen = ({navigation}) => {
                 onChangeText={setInput}
                 keyboardType="default"
                 style={styles.input}
+                placeholder ="Choose category"
+
                 />
             <TouchableOpacity  onPress={handleErase} style={styles.button}>
                 <Text style={styles.textButton}>
@@ -101,6 +103,8 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: colors.lightOrange,
         borderRadius:5,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     textButton:{
         textAlign:'center',

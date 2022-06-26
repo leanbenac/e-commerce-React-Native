@@ -5,6 +5,7 @@ import {Ionicons} from '@expo/vector-icons';
 
 
 const CartItem = ({ item, onDelete }) => {
+  
   return (
     <View style={styles.item}>
       <View>

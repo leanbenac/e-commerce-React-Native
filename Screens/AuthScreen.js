@@ -77,7 +77,7 @@ const LoginScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>{registroVista ? "Registro" : "Login"}</Text>
+                <Text style={styles.title}>{registroVista ? "Registration" : "Login"}</Text>
                 <Formik 
                     onSubmit={handleSubmit}
                     initialValues={{email: "", password: "", confirmPassword: ""}}
@@ -91,9 +91,17 @@ const LoginScreen = () => {
                             <Input label="Password" password={true} onChange={handleChange('password')} value={values.password} error={errors.password} onBlur={handleBlur('password')}/>
                             {registroVista && <Input label="Confirm password" password={true} onChange={handleChange('confirmPassword')} value={values.confirmPassword} onBlur={handleBlur('confirmPassword')} error={confirmPasswordError}/>}
                             {registroVista ?
-                                <Button title="Signup" onPress={handleSubmit} />
+                                <TouchableOpacity title="Signup" onPress={handleSubmit} style={styles.btn}>
+                                <Text>
+                                    Signup
+                                </Text>
+                            </TouchableOpacity>
                                 :
-                                <Button title="Login" onPress={handleSubmit} />
+                                <TouchableOpacity title="Login" onPress={handleSubmit} style={styles.btn}>
+                                    <Text>
+                                        Login
+                                    </Text>
+                                </TouchableOpacity>
                             }
                             <View style={styles.textContainer}>
                                 {registroVista ?
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.darkGreen,
+        backgroundColor: colors.lightWhite,
     },
     content: {
         backgroundColor: colors.darkBlue,
@@ -137,7 +145,7 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 6,
+            height: 10,
         },
         shadowOpacity: 0.37,
         shadowRadius: 7.49,
@@ -146,10 +154,11 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'LatoRegular',
         fontSize: 24,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: "#000",
     },
     textContainer: {
-        padding: 10,
+        padding: 35,
         fontFamily: 'LatoRegular',
         justifyContent: 'flex-start',
         alignItems: 'center'
@@ -157,5 +166,14 @@ const styles = StyleSheet.create({
     link: {
         color: colors.lightGreen,
         textDecorationLine: "underline"
-    }
+    },
+    btn:{
+        backgroundColor: colors.lightGreen,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        padding: 10,
+        marginTop: 12,
+
+    },
 })

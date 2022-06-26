@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useEffect } from 'react'
 import PlaceItem from '../Components/PlaceItem'
 import { useDispatch, useSelector } from 'react-redux'

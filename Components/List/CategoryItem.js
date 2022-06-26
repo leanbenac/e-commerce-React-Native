@@ -34,13 +34,13 @@ const style = StyleSheet.create({
          height: 150,
          backgroundColor: colors.lightOrange,
          justifyContent: 'flex-end',
-         alignItems: 'flex-end',
+         alignItems: 'center',
          padding: 15,
          borderRadius: 10,
 
      },
      text: {
-    
+
         fontSize: 18,
      }
 })

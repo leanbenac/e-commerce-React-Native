@@ -76,7 +76,7 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation,
                         onChangeText={setInput}
                         keyboardType="default"
                         style={styles.input}
-                        placeholder ="busque el producto "
+                        placeholder ="Search your NFT"
                         />
                     <TouchableOpacity  onPress={handleErase} style={styles.button}>
                         <Feather style={styles.textButton} name="delete" size={25} color="black" />
@@ -84,11 +84,11 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation,
                     </Searcher>
                         <>
                             <List data={productsFiltered} itemType ={"Producto"} onPress={handleDetailProduct}/>
-                            <TouchableOpacity style={styles.buttonBack} onPress={ handleBack } >
+                            {/* <TouchableOpacity style={styles.buttonBack} onPress={ handleBack } >
                                 <Text>
                                     Go back
                                 </Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </>
                 </View>
             </TouchableWithoutFeedback>
