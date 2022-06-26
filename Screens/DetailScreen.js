@@ -46,14 +46,14 @@ const DetailScreen = ({
 
             <Text>{productSelected.description}</Text>
             <Text>$ {productSelected.price}</Text>
-            <TouchableOpacity style={styles.buttonBack} onPress={handleBack} >
+            <TouchableOpacity style={styles.btn} onPress={handleBack} >
                 <Text>
-                       Go back
+                       Go back !
                  </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonBack} onPress={() =>handleAdd(productSelected.id)} >
+            <TouchableOpacity style={styles.btn} onPress={() =>handleAdd(productSelected.id)} >
                 <Text>
-                       add to cart
+                       Add to cart
                  </Text>
             </TouchableOpacity>
         </View>
@@ -76,13 +76,18 @@ const styles = StyleSheet.create({
     image:{
         width: 0.8 * Dimensions.get('window').width,
         height: 250,
+        borderRadius: 10,
+        margin:10,
     },
-    buttonBack: {
+    btn: {
         marginTop:10,
         width:100,
         height: 50,
         backgroundColor: colors.lightOrange,
         borderRadius:5,
+        justifyContent: 'center',
+        textAlign:'center',
+        alignItems: 'center',
     },
 })
 

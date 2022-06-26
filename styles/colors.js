@@ -5,4 +5,5 @@ export const colors = {
     lightWhite : "#EDF6F9",
     darkGreen : "#368F8B",
     lightOrange : "#F79256",
+    lightBlue: "#1883C6"
 }

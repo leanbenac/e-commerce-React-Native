@@ -40,7 +40,7 @@ function ShopNavigator () {
           options={({route}) => ({
             title: route.params.categoryTitle,
             headerStyle: {
-              backgroundColor: route.params.categoryTitle === "Cool" ? "colors.lightGreen" :
+              backgroundColor: route.params.categoryTitle === "Cool" ? colors.lightBlue :
               route.params.categoryTitle === "Animals" ? "black" : colors.darkBlue,
             }
           })
