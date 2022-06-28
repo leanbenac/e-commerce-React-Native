@@ -45,6 +45,7 @@ const DetailScreen = ({
             />
 
             <Text>{productSelected.description}</Text>
+            <Text> {productSelected.model}</Text>
             <Text>$ {productSelected.price}</Text>
             <TouchableOpacity style={styles.btn} onPress={handleBack} >
                 <Text>
