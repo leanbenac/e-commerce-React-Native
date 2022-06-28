@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     borderBottomWidth: 1,
-    borderBottomColor: colors.beige,
+    borderBottomColor: colors.darkBlue,
   },
   header: {
     fontSize: 18,

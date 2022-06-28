@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import { colors } from '../../styles/colors'
 import { useWindowDimensions } from 'react-native';
 
@@ -21,6 +21,10 @@ const CategoryItem = ({category}) => {
         maxHeight: 0.25 * height,
         margin: width < 330 ? 10: 12,
         }}>
+                    {/* <Image
+          style={{ width: 150, height: 65 }}
+          source={{ uri: "https://cdn-icons-png.flaticon.com/512/6699/6699362.png" }}
+        /> */}
             <Text style={style.text}>{category.category} </Text>
         </View>
     )
@@ -32,7 +36,7 @@ const style = StyleSheet.create({
      container: {
          width: 150,
          height: 150,
-         backgroundColor: colors.lightOrange,
+         backgroundColor: colors.lightOrange ,
          justifyContent: 'flex-end',
          alignItems: 'center',
          padding: 15,
@@ -40,7 +44,7 @@ const style = StyleSheet.create({
 
      },
      text: {
-
-        fontSize: 18,
+        marginBottom: 8,
+        fontSize: 20,
      }
 })

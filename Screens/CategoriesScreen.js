@@ -63,7 +63,7 @@ const CategoriesScreen = ({navigation}) => {
                 onChangeText={setInput}
                 keyboardType="default"
                 style={styles.input}
-                placeholder ="Choose category"
+                placeholder ="Choose NFT´s category"
 
                 />
             <TouchableOpacity  onPress={handleErase} style={styles.button}>
