@@ -5,7 +5,7 @@ import { PRODUCTSSELECTED } from '../Data/productsSelected';
 import CartItem from '../Components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmPurchase } from '../features/cart';
-import { removeItem } from '../features/cart'
+import { removeItem ,removeCart} from '../features/cart'
 
 
 
@@ -19,6 +19,7 @@ const CartScreen = () => {
         
     const handleConfirm = () => {
         dispatch(confirmPurchase(cart))
+        dispatch(removeCart());
     };
         
     const handleDelete = (id) => {

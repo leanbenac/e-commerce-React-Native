@@ -59,6 +59,9 @@ const cartSlice = createSlice({
       state.value.cart = state.value.cart.filter(item => item.id !==action.payload.id);
       console.log(state.value.cart);
     },
+    removeCart: (state) => {
+      state.value.cart = [];
+    }
   },
 
   //estados posibles
@@ -77,6 +80,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addItem, removeItem,removeCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
