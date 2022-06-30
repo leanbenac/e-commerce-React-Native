@@ -5,24 +5,46 @@ import { PRODUCTSSELECTED } from '../Data/productsSelected';
 import CartItem from '../Components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmPurchase } from '../features/cart';
+import { removeItem } from '../features/cart'
 
-const handleDelete = (id) => console.log(`Se elimina del carrito el producto con id: ${id}`);
 
-const renderItem = (data) => (
-    <CartItem item={data.item} onDelete={handleDelete} />
-    )
-    
-    const CartScreen = () => {
 
-        const dispatch = useDispatch();
-        const {cart} = useSelector (state =>state.cart.value)
-        console.log(cart);
+const CartScreen = () => {
+
+    const dispatch = useDispatch();
+
+    const {cart} = useSelector (state =>state.cart.value);
+    const cartArray = useSelector(state => state.cart.value.cart);
+    console.log(cartArray);
         
-        const handleConfirm = () => {
-            dispatch(confirmPurchase(cart))
-        }
+    const handleConfirm = () => {
+        dispatch(confirmPurchase(cart))
+    };
+        
+    const handleDelete = (id) => {
+    
+        dispatch(removeItem({id:id}));
+    };
+        
+    const renderItem = (data) => (
+        <CartItem item={data.item} onDelete={handleDelete} />
+    );
 
-    const total = 12000;
+        
+
+    const subTotalArray1 = cartArray.filter ( item=> item.quantity > 1);
+    const subTotalArray2 = cartArray.filter ( item=> item.quantity == 1);
+    let total = 0;
+    let subTotal1 = 0;
+    let subTotal2 = 0;
+    if(subTotalArray1){
+        subTotalArray1.forEach( item =>{ subTotal1 += item.price * item.quantity});
+        subTotalArray2.forEach((product)=>{subTotal2 += product.price});
+        total = subTotal1 + subTotal2;
+    } else {
+        cartArray.forEach ((product)=> {total += product.price})
+    }
+
 
     return (
         <View style={styles.container}>

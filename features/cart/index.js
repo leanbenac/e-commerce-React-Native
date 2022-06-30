@@ -55,7 +55,10 @@ const cartSlice = createSlice({
         state.value.cart.push({ ...producto, quantity: 1 });
       }
     },
-    removeItem: () => {},
+    removeItem: (state, action) => {
+      state.value.cart = state.value.cart.filter(item => item.id !==action.payload.id);
+      console.log(state.value.cart);
+    },
   },
 
   //estados posibles
