@@ -1,18 +1,14 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { colors } from '../styles/colors'
-import { PRODUCTSSELECTED } from '../Data/productsSelected';
 import CartItem from '../Components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmPurchase } from '../features/cart';
 import { removeItem ,removeCart} from '../features/cart'
 
-
-
 const CartScreen = () => {
 
     const dispatch = useDispatch();
-
     const {cart} = useSelector (state =>state.cart.value);
     const cartArray = useSelector(state => state.cart.value.cart);
     console.log(cartArray);
@@ -31,7 +27,6 @@ const CartScreen = () => {
         <CartItem item={data.item} onDelete={handleDelete} />
     );
 
-        
 
     const subTotalArray1 = cartArray.filter ( item=> item.quantity > 1);
     const subTotalArray2 = cartArray.filter ( item=> item.quantity == 1);

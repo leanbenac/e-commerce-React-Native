@@ -33,15 +33,6 @@ const SaveLocationScreen = ({navigation, route}) => {
     }
   }
 
-  // const getPermission = async () => {
-  //   const { status } = await ImagePicker.getCameraPermissionsAsync()
-
-  //   console.log(status);
-  //   if (status !== 'granted') {
-  //     return false
-  //   }
-  //   return true
-  // }
 
   const openCamera = async () => {
     // Ask the user for the permission to access the camera

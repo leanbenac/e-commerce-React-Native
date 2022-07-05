@@ -86,12 +86,9 @@ const SetLocationScreen = ({ navigation }) => {
                                         latitude: location.lat,
                                         longitude: location.lng,
                                     }}
-
                                 />
                                 :
                                 null
-
-
                             }
 
                         </MapView>

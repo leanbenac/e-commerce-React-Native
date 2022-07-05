@@ -5,7 +5,6 @@ import { colors } from '../styles/colors'
 const LoginScreen = () => {
 
     const [registroVista, setRegistroVista] = useState(false)
-
     return (
         <View style={styles.container}>
             <View style={styles.content}>

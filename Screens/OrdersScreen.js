@@ -1,7 +1,6 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
 import OrderItem from "../Components/OrderItem";
-import { ORDERS } from "../Data/order";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../features/orders";
 

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import * as Location from 'expo-location';
 import { API_KEY } from '../Constants/googleAPI';
 
-//https://developers.google.com/maps/documentation/maps-static/start DOC API
-//https://developers.google.com/maps/documentation/maps-static/start#Markers Markers DOC
 
 const GetLocationScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);

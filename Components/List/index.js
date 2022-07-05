@@ -1,36 +1,30 @@
-import React from 'react'
-import { StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native'
-import CategoryItem from './CategoryItem'
-import ProductItem from './ProductItem'
+import React from "react";
+import { FlatList, TouchableOpacity } from "react-native";
+import CategoryItem from "./CategoryItem";
+import ProductItem from "./ProductItem";
 
-const List = ({ itemType = "category", data, onPress}) => {
-
-    //tipo de item a renderizar 
-    const fnRender = ({item}) =>{
-
-        return (
-
-            <TouchableOpacity onPress={() => onPress(item)}>
-                {itemType === "category" ?
-                    <CategoryItem category={item}/>
-                    :
-                    <ProductItem product={item}/>}
-            </TouchableOpacity>
-        )
-    }
-
+const List = ({ itemType = "category", data, onPress }) => {
+  //tipo de item a renderizar
+  const fnRender = ({ item }) => {
     return (
-        <FlatList
-        numColumns={itemType === "category" ? 2: 1}
-        data={data}
-        renderItem={fnRender}
-        keyExtractor={item => item.id}
-        />
-    )
-}
+      <TouchableOpacity onPress={() => onPress(item)}>
+        {itemType === "category" ? (
+          <CategoryItem category={item} />
+        ) : (
+          <ProductItem product={item} />
+        )}
+      </TouchableOpacity>
+    );
+  };
 
-export default List
+  return (
+    <FlatList
+      numColumns={itemType === "category" ? 2 : 1}
+      data={data}
+      renderItem={fnRender}
+      keyExtractor={(item) => item.id}
+    />
+  );
+};
 
-const style = StyleSheet.create({
- 
-})
+export default List;

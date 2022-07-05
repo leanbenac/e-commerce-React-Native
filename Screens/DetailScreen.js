@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-// import Header from '../Components/Header'
-// import { PRODUCTS } from '../Data/products'
 import { addItem } from '../features/cart'
 import products from '../features/products'
 import { colors } from '../styles/colors'
@@ -13,19 +11,12 @@ const DetailScreen = ({
 }) => {
 
     const dispatch = useDispatch();
-    // const[product, setProduct] = useState(null)
-    // const {productID} = route.params
     const {productSelected} = useSelector(state => state.products.value)
     // console.log(productID);
 
     const handleBack = () =>{
         navigation.goBack();
     } 
-
-        // useEffect(()=> {
-        //     const productSelected = PRODUCTS.find (product => product.id === productID);
-        //     setProduct(productSelected)
-        // },[productID])
 
         const handleAdd = (id) =>{
             dispatch(addItem({id: id}))

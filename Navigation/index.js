@@ -12,7 +12,7 @@ const MainNavigator = () => {
 
   return (
     <NavigationContainer>
-      {true ?
+      {user.email ?
         <TabNavigatorLogged />
         :
         <AuthStack />

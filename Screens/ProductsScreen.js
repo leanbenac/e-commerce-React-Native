@@ -12,7 +12,6 @@ import { setProductSelected } from '../features/products';
 const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation, route}) => {
 
     const [input, setInput] = useState("");
-    // const [initialProducts, setInitialProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([])
     const {products} = useSelector(state => state.products.value)
     const {productsByCategory} = useSelector(state => state.products.value)
@@ -37,15 +36,6 @@ const ProductsScreen = ({ category = {id:1, category: "Electronic"}, navigation,
             }
         }
     }, [input, productsByCategory])
-
-    //Realiza el filtro inicial de productos por categoría(1)
-    // useEffect(()=> {
-    //     const productosIniciales = products.filter(product => product.category === categoryID)
-    //     setInitialProducts(productosIniciales);
-    // }, [categoryID])
-
-    // console.log(initialProducts);
-    // console.log(productsFiltered);
 
     const handleDetailProduct = (product) => {
         console.log(product);

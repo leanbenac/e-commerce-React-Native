@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import Header from '../Components/Header'
 import Searcher from '../Components/Searcher'
 import { colors } from '../styles/colors'
 import { Feather } from '@expo/vector-icons'; 
 import List from '../Components/List'
-import { CATEGORIES } from '../Data/categories'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCategory } from '../features/categories'
 import { setProductsByCategory } from '../features/products'
@@ -38,9 +36,6 @@ const CategoriesScreen = ({navigation}) => {
 
     
     const handleSelectedCategory = (category) =>{
-        // console.log(category);
-        // handleCategory(category);
-        // console.log(category);
 
         dispatch(setProductsByCategory(category.id))
         dispatch(selectCategory(category.id));
