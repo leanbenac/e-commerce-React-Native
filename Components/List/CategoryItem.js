@@ -21,10 +21,10 @@ const CategoryItem = ({category}) => {
         maxHeight: 0.25 * height,
         margin: width < 330 ? 10: 12,
         }}>
-                    {/* <Image
-          style={{ width: 150, height: 65 }}
-          source={{ uri: "https://cdn-icons-png.flaticon.com/512/6699/6699362.png" }}
-        /> */}
+                    <Image
+          style={{ width: 150, height: 105, borderRadius: 10 }}
+          source={{ uri: "https://negociosenflorida.com/wp-content/uploads/2022/02/NFT-7.jpg" }}
+        />
             <Text style={style.text}>{category.category} </Text>
         </View>
     )
@@ -36,7 +36,7 @@ const style = StyleSheet.create({
      container: {
          width: 150,
          height: 150,
-         backgroundColor: colors.lightOrange ,
+         backgroundColor: colors.darkBlue ,
          justifyContent: 'flex-end',
          alignItems: 'center',
          padding: 15,
@@ -44,7 +44,9 @@ const style = StyleSheet.create({
 
      },
      text: {
-        marginBottom: 8,
+        marginBottom: 0,
         fontSize: 20,
+        marginTop:10,
+        color: colors.lightWhite
      }
 })

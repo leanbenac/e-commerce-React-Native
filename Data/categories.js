@@ -1,18 +1,18 @@
 export const CATEGORIES = [
     {
         id: 1,
-    category: "Famous",
+    category: "FAMOUS",
     },
     {
         id: 2,
-    category: "Cool"
+    category: "COOL"
     },
     {
         id: 3,
-    category: "Cartoons"
+    category: "CARTOONS"
     },
     {
         id: 4,
-    category: "Animals"
+    category: "ANIMALS"
     }
 ];
