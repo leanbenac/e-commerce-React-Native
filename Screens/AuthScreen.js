@@ -161,7 +161,9 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   textContainer: {
-    padding: 35,
+    padding: 15,
+    paddingLeft:40,
+    paddingRight:40,
     fontFamily: "LatoRegular",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -175,7 +177,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    padding: 10,
-    marginTop: 12,
+    padding: 5,
   },
 });
