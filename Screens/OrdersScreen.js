@@ -10,14 +10,14 @@ const renderItem = ({ item }) => <OrderItem item={item} />;
 const OrdersScreen = () => {
   const dispatch = useDispatch();
   const userId = useSelector (state => state.auth.value.user.userId);
-  const orders = useSelector (state => state.orders.value.orders)
+  const orders = useSelector (state => state.orders.value.orders);
   const orderSelected = orders.filter(order => userId === order.userId)
 
   useEffect(() => {
     dispatch(getOrders());
   }, []);
 
-  console.log(orderSelected);
+  // console.log(orderSelected);
   console.log(orders);
 
   return (

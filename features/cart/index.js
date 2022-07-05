@@ -24,8 +24,8 @@ export const confirmPurchase = createAsyncThunk(
         body: JSON.stringify({
           date: new Date().toLocaleDateString(),
           id: Math.floor(Math.random() * 100000),
-          items: items,
           userId: userId,
+          items: items,
           total: total,
         }),
       });

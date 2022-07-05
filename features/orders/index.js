@@ -34,9 +34,9 @@ export const ordersSlice = createSlice({
     [getOrders.pending]: (state) => {
       state.value.loading = true;
     },
-    [getOrders.fulfilled]: (state, { payload }) => {
+    [getOrders.fulfilled]: (state,  payload ) => {
       state.value.loading = false;
-      state.value.orders = payload;
+      state.value.orders = payload.payload;
     },
     [getOrders.rejected]: (state) => {
       state.value.loading = false;

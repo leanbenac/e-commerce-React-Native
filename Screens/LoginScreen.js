@@ -10,7 +10,6 @@ const LoginScreen = () => {
             <View style={styles.content}>
                 <Text style={styles.title}>{registroVista ? "Registro": "Login"}</Text>
             </View>
-            <Text>LoginScreen</Text>
         </View>
     )
 }

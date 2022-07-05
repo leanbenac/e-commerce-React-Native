@@ -4,22 +4,25 @@ import { colors } from '../styles/colors'
 import CartItem from '../Components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmPurchase } from '../features/cart';
-import { removeItem ,removeCart} from '../features/cart'
+import { removeItem ,removeCart} from '../features/cart';
+import {getOrders} from '../features/orders'
 
 const CartScreen = () => {
 
     const dispatch = useDispatch();
     const {cart} = useSelector (state =>state.cart.value);
     const cartArray = useSelector(state => state.cart.value.cart);
+    const userId = useSelector(state => state.auth.value.user.userId);
+
     console.log(cartArray);
-        
+
     const handleConfirm = () => {
-        dispatch(confirmPurchase(cart))
+        dispatch(confirmPurchase({userId:{userId}, items:cart, total:total}));
         dispatch(removeCart());
+        dispatch(getOrders());
     };
         
     const handleDelete = (id) => {
-    
         dispatch(removeItem({id:id}));
     };
         
