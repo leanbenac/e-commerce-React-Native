@@ -15,7 +15,8 @@ const initialState = {
 export const confirmPurchase = createAsyncThunk(
   "cart/confirm",
   //llamada asincrona con metodo POST
-  async (items, asyncThunk) => {
+  async ({ items,userId,total }, asyncThunk) => {
+    console.log(items);
     // try lo usamos en casa de haber un error
     try {
       const res = await fetch(`${DB_URL}orders.json`, {
@@ -74,8 +75,16 @@ const cartSlice = createSlice({
       state.value.loading = true;
     },
     [confirmPurchase.fulfilled]: (state, { payload }) => {
-      state.value.response = payload;
-      state.value.loading = false;
+      // state.value.response = payload;
+      // state.value.loading = false;
+      const formattedOrders = Object.entries(payload).map(item => {
+        return {
+            id: item[0],
+            ...item[1],
+        };
+    });
+    state.value.response = formattedOrders;
+      
     },
     [confirmPurchase.rejected]: (state) => {
       state.value.loading = false;

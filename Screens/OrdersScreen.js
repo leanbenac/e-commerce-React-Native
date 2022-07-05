@@ -19,12 +19,13 @@ const OrdersScreen = () => {
   }, []);
 
   console.log(orderSelected);
+  console.log(orders);
 
   return (
     <View style={styles.container}>
       <FlatList
         data={orderSelected}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         renderItem={renderItem}
       />
     </View>
