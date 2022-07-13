@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AUTH_SIGNUP } from "../../Constants/firebase";
+import { AUTH_LOGIN} from "../../Constants/firebase";
 
 const initialState = {
   //inicialiazo
